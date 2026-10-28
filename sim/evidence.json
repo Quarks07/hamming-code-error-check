@@ -1,7 +1,7 @@
 {
     "playground":  "https://edaplayground.com/x/Dczm",
     "simulator":  "Cadence Xcelium 25.03, xrun 25.03-s001",
-    "capture":  "Tight crops of the actual EPWave panel and Cadence simulation log. No browser bars, desktop, site navigation, ads or surrounding blank page. Content pixels are unchanged.",
+    "capture":  "Full visible EDA Playground website area. Only Chrome tabs, address bar, bookmarks bar and Windows taskbar are cropped out. Website header, navigation, settings and page contents are retained.",
     "result":  "128 clean/single-bit checks passed; double-bit limitation example passed",
     "download_run_utc":  "2026-10-28 07:46:32",
     "screenshot_run_utc":  "2026-10-28 07:47:18",
@@ -12,21 +12,21 @@
                    "sim/waveform.vcd":  "836a9290ecc8ad6d415e2aeec97f01fb92e767999dc521e7a248b8733300b8b9",
                    "sim/xrun.log":  "ce8d7bebfc304e019ad4762666bb1b8f1e6435cb1d280122d5a1a8fc81697830",
                    "sim/simulation.log":  "ae97c391982677c092ade7a143e9ad4a6ec0e1db3736386f0c837f06fcbc431c",
-                   "images/simulation-waveform.png":  "7634e3f5417cb32dff322260edacbd0e90a7bbde17d70bfa34c66e4f58a9cd1c",
-                   "images/simulation-output.png":  "e46a6ff79570ac7f8dce487f8e7758d1a416e674aa127912f2368bdef8206409"
+                   "images/eda-playground-waveform.png":  "6ae766c5e0b01a44aca45642bf4a320d936c3556301979ff60258e571f6fbff7",
+                   "images/eda-playground-output.png":  "67a018a3742afc7ce1a4ed99f5e32625accbdb7d00d77ee1d04f24d42fcd4cc8"
                },
     "crop_rectangles_xywh":  {
-                                 "images/simulation-waveform.png":  [
-                                                                        20,
-                                                                        193,
-                                                                        1880,
-                                                                        335
-                                                                    ],
-                                 "images/simulation-output.png":  [
-                                                                      238,
-                                                                      507,
-                                                                      800,
-                                                                      507
-                                                                  ]
+                                 "images/eda-playground-waveform.png":  [
+                                                                            0,
+                                                                            138,
+                                                                            1920,
+                                                                            894
+                                                                        ],
+                                 "images/eda-playground-output.png":  [
+                                                                          0,
+                                                                          138,
+                                                                          1920,
+                                                                          894
+                                                                      ]
                              }
 }
