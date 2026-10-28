@@ -16,12 +16,12 @@ In EPWave, click Get Signals, open `tb_hamming74`, and pick signals. `$dumpfile(
 
 ## Results
 
-All 128 checks pass, 16 clean plus 112 single-bit errors, and the two-bit example returns wrong data as expected. Files: [VCD](sim/waveform.vcd), [raw xrun.log](sim/xrun.log).
+I started with `1011`. It encodes to `1100110`. With no error the syndrome is `000` and `data_out` is `1011`. When I flip position 3 the received word becomes `1100010`. The syndrome is `011`, which points to position 3, so the decoder flips that bit back and `data_out` returns to `1011`.
 
-![EPWave waveform](images/waveform.png)
+![Simulation waveform](images/simulation-waveform.png)
 
-*EPWave, binary, about 0 to 172 ns. First 100 ns are directed tests, then exhaustive tests. Leading zeros are omitted, so `11` on `data_out[3:0]` means `0011`.*
+*The EPWave timeline is in ps, so 20000 is 20 ns. It drops leading zeros, so `11` on `data_out` means `0011`.*
 
-![Cadence run log](images/output.png)
+Flipping two bits is different. With mask `0000101`, positions 1 and 3, the received word is `1100011` and the syndrome is `010`. That makes the decoder flip position 2 instead, and `data_out` comes out as `0011` rather than `1011`. Hamming (7,4) only corrects a single bit, so it cannot recover the original from two flips. I also ran through all 16 inputs, flipping each bit one at a time.
 
-*Cadence Xcelium 25.03 log in Chrome, code and simulator selection visible.*
+![Simulation output](images/simulation-output.png)
