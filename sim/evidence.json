@@ -1,18 +1,32 @@
 {
-  "playground": "https://edaplayground.com/x/Dczm",
-  "simulator": "Cadence Xcelium 25.03, xrun 25.03-s001",
-  "capture": "Unedited full 1920x1080 screenshots of the user Chrome browser",
-  "result": "128 clean/single-bit checks passed; double-bit limitation example passed",
-  "download_run_utc": "2026-10-28 07:46:32",
-  "screenshot_run_utc": "2026-10-28 07:47:18",
-  "sources_verified": "Downloaded design.sv and testbench.sv match repository sources after newline normalization. Both runs use the same sources.",
-  "sha256": {
-    "rtl/hamming74.v": "127630c7d9707e060af620c8c870ad492c81f65ef2d2cb33d9217d434edc9feb",
-    "tb/tb_hamming74.v": "174bc7404b5c12361bb9c78e8a51d7b186826e3e03e720da663ef9b672a372c9",
-    "images/waveform.png": "44ae989ff541fcd7a635d84b957d1dd91ec28a74c05a61ac6048d7846647f185",
-    "images/output.png": "136d68d5a5ddc80a21af551c6acbb9fed3aa09a34352e60956341769f200a2cb",
-    "sim/waveform.vcd": "836a9290ecc8ad6d415e2aeec97f01fb92e767999dc521e7a248b8733300b8b9",
-    "sim/xrun.log": "ce8d7bebfc304e019ad4762666bb1b8f1e6435cb1d280122d5a1a8fc81697830",
-    "sim/simulation.log": "ae97c391982677c092ade7a143e9ad4a6ec0e1db3736386f0c837f06fcbc431c"
-  }
+    "playground":  "https://edaplayground.com/x/Dczm",
+    "simulator":  "Cadence Xcelium 25.03, xrun 25.03-s001",
+    "capture":  "Website-only crops of the original Chrome screenshots. Browser controls, bookmarks and Windows taskbar removed; waveform crop also removes unused blank space. Screenshot content is unchanged.",
+    "result":  "128 clean/single-bit checks passed; double-bit limitation example passed",
+    "download_run_utc":  "2026-10-28 07:46:32",
+    "screenshot_run_utc":  "2026-10-28 07:47:18",
+    "sources_verified":  "Downloaded design.sv and testbench.sv match repository sources after newline normalization. Both runs use the same sources.",
+    "sha256":  {
+                   "rtl/hamming74.v":  "127630c7d9707e060af620c8c870ad492c81f65ef2d2cb33d9217d434edc9feb",
+                   "tb/tb_hamming74.v":  "174bc7404b5c12361bb9c78e8a51d7b186826e3e03e720da663ef9b672a372c9",
+                   "images/waveform.png":  "bad3841562a301222c2d4c30893457dde2121fa7107b8a150d750c64b0246eb3",
+                   "images/output.png":  "67a018a3742afc7ce1a4ed99f5e32625accbdb7d00d77ee1d04f24d42fcd4cc8",
+                   "sim/waveform.vcd":  "836a9290ecc8ad6d415e2aeec97f01fb92e767999dc521e7a248b8733300b8b9",
+                   "sim/xrun.log":  "ce8d7bebfc304e019ad4762666bb1b8f1e6435cb1d280122d5a1a8fc81697830",
+                   "sim/simulation.log":  "ae97c391982677c092ade7a143e9ad4a6ec0e1db3736386f0c837f06fcbc431c"
+               },
+    "crop_rectangles_xywh":  {
+                                 "images/waveform.png":  [
+                                                             0,
+                                                             138,
+                                                             1920,
+                                                             412
+                                                         ],
+                                 "images/output.png":  [
+                                                           0,
+                                                           138,
+                                                           1920,
+                                                           894
+                                                       ]
+                             }
 }
