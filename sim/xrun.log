@@ -1,0 +1,34 @@
+xrun: 25.03-s001: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun	25.03-s001: Started on Oct 28, 2026 at 03:46:32 EDT
+xrun
+	-Q
+	-unbuffered
+	-timescale 1ns/1ns
+	-sysv
+	-access +rw
+	design.sv
+	testbench.sv
+	Top level design units:
+		tb_hamming74
+Loading snapshot worklib.tb_hamming74:sv .................... Done
+xcelium> source /xcelium25.03/tools/xcelium/files/xmsimrc
+xcelium> run
+Hamming (7,4) - even parity
+Demo: data=1011, encoded=1100110
+pos  mask     received  syndrome  out
+ 0   0000000  1100110   000       1011
+ 1   0000001  1100111   001       1011
+ 2   0000010  1100100   010       1011
+ 3   0000100  1100010   011       1011
+ 4   0001000  1101110   100       1011
+ 5   0010000  1110110   101       1011
+ 6   0100000  1000110   110       1011
+ 7   1000000  0100110   111       1011
+Two-bit example: mask=0000101, out=0011 (incorrect, as expected)
+PASS: 128 checks (16 clean + 112 single-bit errors)
+PASS: double-bit limitation example checked
+ALL TESTS PASSED
+Simulation complete via $finish(1) at time 1380 NS + 0
+./testbench.sv:109         $finish;
+xcelium> exit
+TOOL:	xrun	25.03-s001: Exiting on Oct 28, 2026 at 03:46:34 EDT  (total: 00:00:02)

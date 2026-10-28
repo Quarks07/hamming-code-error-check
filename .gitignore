@@ -1,4 +1,3 @@
 build/
 __pycache__/
-*.jou
-*.pb
+dump.vcd

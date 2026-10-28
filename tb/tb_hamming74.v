@@ -57,10 +57,8 @@ module tb_hamming74;
     endtask
 
     initial begin
-`ifdef __ICARUS__
-        $dumpfile("sim/waveform.vcd");
+        $dumpfile("dump.vcd");
         $dumpvars(0, tb_hamming74);
-`endif
         passes = 0;
         data_in = 4'b1011;
         error_mask = 7'b0000000;

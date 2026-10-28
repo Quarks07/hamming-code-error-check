@@ -1,56 +1,27 @@
 # Hamming (7,4) error check
 
-A simple Verilog implementation of Hamming (7,4). It encodes 4 data bits into 7 bits and uses a syndrome to find and correct a single-bit error.
+Verilog that encodes 4 data bits into 7 bits and corrects one flipped bit, but not two.
 
 ## How it works
 
-Positions 1, 2 and 4 are parity bits. Positions 3, 5, 6 and 7 are data.
+Positions 1/2/4 are parity bits and 3/5/6/7 are data. `data_in[3:0]` maps to positions 3/5/6/7 in order. Parity is even. P1 covers 1/3/5/7, P2 covers 2/3/6/7, and P4 covers 4/5/6/7. Position 7 is written first, so `1011` encodes to `1100110`.
 
-Parity is even. Each parity bit makes its group have an even number of 1s. P1 covers 1, 3, 5, 7. P2 covers 2, 3, 6, 7. P4 covers 4, 5, 6, 7.
+With at most one flipped bit, syndrome 0 means no error. Values 1 to 7 name the flipped bit, and the decoder flips it back. With two flipped bits, the decoder flips the wrong bit and the data stays wrong.
 
-`data_in[3]` goes to position 3, `data_in[2]` to 5, `data_in[1]` to 6 and `data_in[0]` to 7. Words are `[6:0]`, so position 7 prints first and 1 last. Data `1011` gives `1100110`.
+## Run it on EDA Playground
 
-The 3-bit syndrome is 0 with no error. For a single-bit error, values 1 to 7 give the flipped position, which is flipped back. Two flipped bits give a syndrome for the wrong bit, so the output stays wrong.
+Open the [saved playground](https://edaplayground.com/x/Dczm), titled "Hamming (7,4) error check", or copy in the [design](rtl/hamming74.v) and [testbench](tb/tb_hamming74.v), with `tb_hamming74` as top. In Tools & Simulators, pick Cadence Xcelium 25.03, using the SystemVerilog design/testbench editors. Set Compile Options to `-timescale 1ns/1ns -sysv` and Run Options to `-access +rw`. Tick Open EPWave after run, then click Run.
 
-## Files
-
-- [RTL](rtl/hamming74.v)
-- [Testbench](tb/tb_hamming74.v)
-- [Run script](scripts/run.ps1)
-- [XSim script](scripts/simulate.tcl)
-- [Waveform data](sim/waveform.vcd)
-- [Simulation log](sim/simulation.log)
-
-## Run it
-
-Vivado 2026.1, in PowerShell:
-
-```powershell
-.\scripts\run.ps1
-# Or specify your Vivado installation:
-.\scripts\run.ps1 -VivadoBin "C:\Xilinx\Vivado\2026.1\bin"
-```
-
-Alternatively, with Icarus Verilog installed:
-
-```powershell
-New-Item -ItemType Directory -Force build, sim | Out-Null
-iverilog -g2012 -s tb_hamming74 -o build/hamming74.vvp rtl/hamming74.v tb/tb_hamming74.v
-vvp build/hamming74.vvp
-```
-
-Icarus writes `sim/waveform.vcd` via the `__ICARUS__` guard. XSim writes it via [simulate.tcl](scripts/simulate.tcl).
+In EPWave, click Get Signals, open `tb_hamming74`, and pick signals. `$dumpfile("dump.vcd")` and `$dumpvars` are already set for Cadence.
 
 ## Results
 
-16 clean and 112 single-bit checks pass, 128 total, plus one two-bit check.
+All 128 checks pass, 16 clean plus 112 single-bit errors, and the two-bit example returns wrong data as expected. Files: [VCD](sim/waveform.vcd), [raw xrun.log](sim/xrun.log).
 
-![First 100 ns of the directed test](images/waveform.png)
+![EPWave waveform](images/waveform.png)
 
-*Rendered from the XSim VCD. Clean 0-10 ns, positions 1-7 flipped 10-80 ns, clean 80-90 ns, mask `0000101` 90-100 ns gives `0011`.*
+*EPWave, binary, about 0 to 172 ns. First 100 ns are directed tests, then exhaustive tests. Leading zeros are omitted, so `11` on `data_out[3:0]` means `0011`.*
 
-![Simulation output](images/output.png)
+![Cadence run log](images/output.png)
 
-*Rendered from the XSim log. Single-bit cases recover `1011`. The two-bit case gives `0011`, wrong as expected.*
-
-To regenerate the images, install Pillow and run `python scripts/render_images.py` after simulation.
+*Cadence Xcelium 25.03 log in Chrome, code and simulator selection visible.*
