@@ -1,0 +1,2 @@
+# Preserve simulator output without whitespace checks on generated logs.
+sim/*.log -whitespace

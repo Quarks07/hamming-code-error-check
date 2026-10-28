@@ -1,0 +1,49 @@
+#-----------------------------------------------------------
+# xsim v2026.1 (64-bit)
+# SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+# IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+# SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+# Start of session at: Wed Oct 28 13:01:59 2026
+# Process ID         : 13024
+# Current directory  : C:/Users/niran/Projects/VLSI/Hamming Code Error Check/github/build
+# Command line       : xsim.exe -log ../sim/simulation.log -mode tcl -source {xsim.dir/hamming_sim/xsim_script.tcl}
+# Log file           : C:/Users/niran/Projects/VLSI/Hamming Code Error Check/github/build/../sim/simulation.log
+# Journal file       : C:/Users/niran/Projects/VLSI/Hamming Code Error Check/github/build\xsim.jou
+# Running On         : StrangeQuarks07
+# Platform           : Windows 11
+# Operating System   : 26300
+# Processor Detail   : AMD Ryzen 7 7840HS w/ Radeon 780M Graphics     
+# CPU Frequency      : 3793 MHz
+# CPU Physical cores : 8
+# CPU Logical cores  : 16
+# Host memory        : 16415 MB
+# Swap memory        : 23622 MB
+# Total Virtual      : 40037 MB
+# Available Virtual  : 24908 MB
+#-----------------------------------------------------------
+source xsim.dir/hamming_sim/xsim_script.tcl
+# xsim {hamming_sim} -autoloadwcfg -tclbatch {../scripts/simulate.tcl}
+Time resolution is 1 ps
+source ../scripts/simulate.tcl
+## open_vcd ../sim/waveform.vcd
+## log_vcd /tb_hamming74/*
+## run all
+Hamming (7,4) - even parity
+Demo: data=1011, encoded=1100110
+pos  mask     received  syndrome  out
+ 0   0000000  1100110   000       1011
+ 1   0000001  1100111   001       1011
+ 2   0000010  1100100   010       1011
+ 3   0000100  1100010   011       1011
+ 4   0001000  1101110   100       1011
+ 5   0010000  1110110   101       1011
+ 6   0100000  1000110   110       1011
+ 7   1000000  0100110   111       1011
+Two-bit example: mask=0000101, out=0011 (incorrect, as expected)
+PASS: 128 checks (16 clean + 112 single-bit errors)
+PASS: double-bit limitation example checked
+ALL TESTS PASSED
+$finish called at time : 1380 ns : File "C:/Users/niran/Projects/VLSI/Hamming Code Error Check/github/tb/tb_hamming74.v" Line 111
+## close_vcd
+## quit
+INFO: [Common 17-206] Exiting xsim at Wed Oct 28 13:02:04 2026...
