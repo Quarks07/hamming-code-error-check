@@ -25,3 +25,21 @@ I started with `1011`. It encodes to `1100110`. With no error the syndrome is `0
 Flipping two bits is different. With mask `0000101`, positions 1 and 3, the received word is `1100011` and the syndrome is `010`. That makes the decoder flip position 2 instead, and `data_out` comes out as `0011` rather than `1011`. Hamming (7,4) only corrects a single bit, so it cannot recover the original from two flips. I also ran through all 16 inputs, flipping each bit one at a time.
 
 ![Simulation output](images/eda-playground-output.png)
+
+## Gate architecture
+
+The [encoder diagram](images/gate-encoder.svg) shows three XOR parity networks and the error-mask XOR gates. Let d3 through d0 mean data_in[3:0].
+
+- P1 = d3 XOR d2 XOR d0
+- P2 = d3 XOR d1 XOR d0
+- P4 = d2 XOR d1 XOR d0
+
+The [decoder diagram](images/gate-decoder.svg) shows syndrome XOR checks, AND gates with inverted inputs, and conditional bit correction. This is equivalent to the RTL case statement. The circuit contains no clock or flip-flops.
+
+## Verification and synthesis update
+
+The EDA Playground run on 5 November 2026 passed 128 checks: 16 clean cases and 112 single-bit cases. The expected two-bit failure was also checked. See the [Xcelium log](sim/xrun-20261105.log). The 1380 ns simulation duration is stimulus scheduling, not propagation delay.
+
+Yosys produced the [generic netlist](synthesis/synth.v) and [circuit diagram](synthesis/yosys-schematic.svg) from the same RTL. The tool menu labels Yosys as 0.37; the generated netlist identifies 0.38+113. Generic synthesis uses XOR operations, comparisons, NOT gates, multiplexers and OR logic. No physical timing, power or chip area was measured.
+
+Basic Hamming (7,4) corrects one error. Reliable double-error detection requires an overall parity bit and extended decoding.
