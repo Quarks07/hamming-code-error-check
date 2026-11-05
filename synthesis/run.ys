@@ -1,0 +1,23 @@
+read_verilog design.sv
+hierarchy -check -top hamming74
+proc
+flatten
+opt
+design -save reference
+techmap
+opt
+abc -g simple
+clean
+check
+stat
+write_verilog -noattr synth.v
+write_json full_gate_netlist.json
+show -format svg -prefix full_gate_architecture hamming74
+design -stash gates
+design -copy-from reference -as gold hamming74
+design -copy-from gates -as gate hamming74
+equiv_make gold gate equiv
+hierarchy -top equiv
+equiv_simple
+equiv_status -assert
+design -load gates

@@ -1,0 +1,12 @@
+{
+  "input_and_mask_combinations_checked": 2048,
+  "all_output_ports_match_original_RTL_behavior": true,
+  "primitive_cells": {
+    "$_XOR_": 24,
+    "$_NOT_": 4,
+    "$_OR_": 4,
+    "$_AND_": 6,
+    "$_MUX_": 3
+  },
+  "primitive_cell_total": 41
+}

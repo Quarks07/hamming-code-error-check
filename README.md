@@ -28,13 +28,9 @@ Flipping two bits is different. With mask `0000101`, positions 1 and 3, the rece
 
 ## Gate architecture
 
-The [encoder diagram](images/gate-encoder.svg) shows three XOR parity networks and the error-mask XOR gates. Let d3 through d0 mean data_in[3:0].
+The [complete connected Vivado RTL schematic](images/full-circuit-vivado.svg) shows every input and output port, parity XOR gates, fault injection, syndrome checks, inverters and correction multiplexer.
 
-- P1 = d3 XOR d2 XOR d0
-- P2 = d3 XOR d1 XOR d0
-- P4 = d2 XOR d1 XOR d0
-
-The [decoder diagram](images/gate-decoder.svg) shows syndrome XOR checks, AND gates with inverted inputs, and conditional bit correction. This is equivalent to the RTL case statement. The circuit contains no clock or flip-flops.
+The [complete EDA Playground gate netlist](synthesis/full-gate-architecture.svg) expands the same RTL into 41 primitive cells: 24 XOR, 6 AND, 4 NOT, 4 OR and 3 multiplexers. Reproduce it in EDA Playground with Yosys and [run.ys](synthesis/run.ys). The [gate netlist](synthesis/full-gate-netlist.v) and [JSON connections](synthesis/full-gate-netlist.json) preserve the complete circuit. All six output ports matched the original RTL behavior for all 2048 data and error-mask combinations, including multi-bit masks. See the [verification result](synthesis/full-gate-verification.json).
 
 ## Verification and synthesis update
 
